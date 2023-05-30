@@ -17,7 +17,6 @@
         <link src="Jajuma_SyntaxHighlighter::js/plugins/previewers.js"/>
         <link src="Jajuma_SyntaxHighlighter::js/plugins/prism-html-extras.js"/>
 
-        <css src="Jajuma_SyntaxHighlighter::css/main.css"/>
         <css src="Jajuma_SyntaxHighlighter::css/custom.css"/>
         <css src="Jajuma_SyntaxHighlighter::css/themes/prism-default.css"/>
         <css src="Jajuma_SyntaxHighlighter::css/prism-inline-color.css"/>
