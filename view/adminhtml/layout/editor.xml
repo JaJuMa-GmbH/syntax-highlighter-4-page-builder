@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023-present JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Jajuma_SyntaxHighlighter::js/prism.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/line-numbers.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/match-braces.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/inline-color.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/prism-css-extras.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/show-invisibles.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/previewers.js"/>
+        <link src="Jajuma_SyntaxHighlighter::js/plugins/prism-html-extras.js"/>
+
+        <css src="Jajuma_SyntaxHighlighter::css/main.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/custom.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/themes/prism-default.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/prism-inline-color.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/prism-show-invisibles.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/prism-match-braces.css"/>
+        <css src="Jajuma_SyntaxHighlighter::css/prism-previewer.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Jajuma\SyntaxHighlighter\Block\Adminhtml\SyntaxHighlighter\SyntaxHighlighter" name="jajuma.syntax.highlighter.init"
+                   template="Jajuma_SyntaxHighlighter::init.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

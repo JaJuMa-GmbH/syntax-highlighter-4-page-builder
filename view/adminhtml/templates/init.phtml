@@ -1,0 +1,229 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023-present JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+
+use Jajuma\SyntaxHighlighter\Helper\Config;
+use Jajuma\SyntaxHighlighter\Helper\Data;
+
+/** @var Jajuma\SyntaxHighlighter\Block\Adminhtml\SyntaxHighlighter\SyntaxHighlighter $block */
+$helperConfig = $this->helper(Config::class);
+$helperData = $this->helper(Data::class);
+$themeList = $helperData->getThemes();
+?>
+
+<script>
+    window.syntaxHighlighter = {};
+    window.syntaxHighlighter.enable = Boolean(parseInt('<?= $helperConfig->isEnable() ?>'));
+    window.syntaxHighlighter.theme = '<?= $helperConfig->getTheme() ?>';
+</script>
+
+<?php if ($helperConfig->isEnable()): ?>
+    <pre style="display: none">
+        <code class="language-css">
+            <span></span>
+        </code>
+    </pre>
+
+    <script>
+        function updateSyntax(element) {
+            let text = element.value;
+            let nextElement = element.nextElementSibling;
+            if (nextElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+                return;
+            }
+
+            let codes = nextElement.getElementsByTagName('code');
+            if (codes.length) {
+                let result_element = codes[0];
+                if (text[text.length - 1] === "\n") {
+                    text += " ";
+                }
+                result_element.innerHTML = text.replace(new RegExp("&", "g"), "&amp;")
+                    .replace(new RegExp("<", "g"), "&lt;");
+                Prism.highlightElement(result_element);
+            }
+        }
+
+        function syncScroll(element) {
+            let nextElement = element.nextElementSibling;
+            if (nextElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+                return;
+            }
+            let result_element = nextElement;
+            result_element.scrollTop = element.scrollTop;
+            result_element.scrollLeft = element.scrollLeft;
+        }
+
+        function checkTab(element, event) {
+            if (event.key !== "Tab") {
+                return;
+            }
+            event.preventDefault();
+
+            let code = element.value;
+            let before_tab = code.slice(0, element.selectionStart);
+            let after_tab = code.slice(element.selectionEnd, element.value.length);
+            let cursor_pos = element.selectionStart + 1;
+            element.value = before_tab + "\t" + after_tab;
+            element.selectionStart = cursor_pos;
+            element.selectionEnd = cursor_pos;
+            updateSyntax(element);
+        }
+
+        function checkEnter(element, event) {
+            if (event.key !== "Enter") {
+                return;
+            }
+            event.preventDefault();
+
+            let input_element = element;
+            let lines = input_element.value.split("\n");
+            let letter_i = 0;
+            let current_line = lines.length - 1;
+            let new_line = "";
+            let number_indents = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                letter_i += lines[i].length + 1;
+                if (input_element.selectionEnd <= letter_i) {
+                    current_line = i;
+                    break;
+                }
+            }
+
+            let cursor_pos_in_line = lines[current_line].length - (letter_i - input_element.selectionEnd) + 1;
+            for (let i = 0; i < cursor_pos_in_line; i++) {
+                if (lines[current_line][i] === "\t" || lines[current_line][i] === " ") {
+                    new_line += lines[current_line][i];
+                    number_indents++;
+                } else {
+                    break;
+                }
+            }
+
+            let selection_start = input_element.selectionStart;
+            document.execCommand("insertText", false, "\n" + new_line);
+            input_element.selectionStart = selection_start + number_indents + 1;
+            input_element.selectionEnd = selection_start + number_indents + 1;
+
+            updateSyntax(input_element);
+        }
+
+        function changeTheme(element) {
+            let theme = element.value;
+            let links = document.querySelectorAll('link');
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+                let href = link.href;
+                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
+                    let hrefArr = href.split('/');
+                    let currentTheme = hrefArr[hrefArr.length - 1];
+                    let newTheme = theme + '.css';
+                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
+                    return;
+                }
+            }
+        }
+
+        function addPlugin(element, plugin) {
+            let toolbarElement = element.parentElement.parentElement;
+            let nextElement = toolbarElement.nextElementSibling;
+            if (nextElement.classList.contains('jajuma-highlight-editor') === false) {
+                return;
+            }
+
+            let preElement = nextElement.querySelector('pre');
+            if (!preElement) {
+                return;
+            }
+
+            if (element.checked === false) {
+                preElement.classList.remove(plugin);
+            } else {
+                if (preElement.classList.contains(plugin)) {
+                    return;
+                }
+                preElement.classList.add(plugin);
+            }
+        }
+
+        var curElem = null;
+        function hoverBraces(element, event) {
+            let x, y;
+            x = event.clientX;
+            y = event.clientY;
+
+            if (event.type === 'click') {
+                element.nextElementSibling.style.zIndex = 2;
+                let elem = document.elementFromPoint(x,y);
+                if (elem !== curElem) {
+                    curElem = elem;
+                }
+                triggerEventByXY('click', elem, x, y);
+                element.nextElementSibling.style.zIndex = 0;
+            }
+
+            if (event.type === 'mousemove') {
+                element.nextElementSibling.style.zIndex = 2;
+                let elem = document.elementFromPoint(x,y);
+                if (elem !== curElem) {
+                    if (curElem) {
+                        triggerEventByXY('mouseleave', curElem, x, y);
+                        triggerEventByXY('mouseout', curElem, x, y);
+                    }
+                    curElem = elem;
+                }
+
+                triggerEventByXY('mouseenter', elem, x, y);
+                triggerEventByXY('mouseover', elem, x, y);
+                element.nextElementSibling.style.zIndex = 0;
+            }
+        }
+
+        function triggerEventByXY(type, element, x, y) {
+            let event = new MouseEvent(type, {
+                'view': window,
+                'bubbles': true,
+                'cancelable': true,
+                'screenX': x,
+                'screenY': y
+            });
+            element.dispatchEvent(event);
+        }
+
+        window.openThemeListModal = () => {
+            require([
+                "jquery",
+                "Magento_Ui/js/modal/modal"
+            ], function($, modal) {
+
+                let options = {
+                    type: 'slide',
+                    responsive: true,
+                    title: 'Choose a theme',
+                    modalClass: 'jajuma-theme-list'
+                };
+
+                let popup = modal(options, $('#popup-theme-list-popup'));
+                $('#popup-theme-list-popup').modal('openModal');
+            });
+        }
+    </script>
+    <div id="popup-theme-list-popup" style="display:none">
+        <form class="jajuma-syntax-highlighter-theme">
+            <?php foreach ($themeList as $theme): ?>
+                <div class="jajuma-theme-item">
+                    <input type="radio" id="jajuma-theme-<?= $theme['value'] ?>"
+                           name="jajuma_theme" value="<?= $theme['value'] ?>" onchange="changeTheme(this)">
+                    <label for="jajuma-theme-<?= $theme['value'] ?>">
+                        <img src="<?= $block->getScreenshotUrl() . '/' . $theme['value'] ?>.png" />
+                        <span class="jajuma-theme-name"><?= $theme['label'] ?></span>
+                    </label>
+                </div>
+            <?php endforeach; ?>
+        </form>
+    </div>
+<?php endif; ?>

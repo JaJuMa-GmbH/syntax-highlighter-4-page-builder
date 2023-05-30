@@ -1,0 +1,23 @@
+{
+    "name": "jajuma/module-syntax-highlighter",
+    "description": "JaJuMa Syntax Highlighter 4 Page Builder for Magento 2",
+        "type": "magento2-module",
+        "license": "MIT",
+        "version": "1.0.0",
+    "authors": [
+        {
+            "email": "info@jajuma.de",
+            "name": "JaJuMa"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Jajuma\\SyntaxHighlighter\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

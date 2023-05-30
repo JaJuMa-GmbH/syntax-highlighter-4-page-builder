@@ -1,0 +1,96 @@
+<div class="admin__control-wysiwig">
+    <div id="buttonspagebuilder_html_form_html" class="buttons-set">
+        <button type="button"
+                class="scalable action-add-widget plugin"
+                click="clickInsertWidget">
+            <span>
+                <span>
+                    <span translate="'Insert Widget...'"></span>
+                </span>
+            </span>
+        </button>
+        <button type="button"
+                class="scalable action-add-image plugin"
+                click="clickInsertImage">
+            <span>
+                <span>
+                    <span translate="'Insert Image...'"></span>
+                </span>
+            </span>
+        </button>
+        <button type="button"
+                class="scalable add-variable plugin"
+                click="clickInsertVariable">
+            <span>
+                <span>
+                    <span translate="'Insert Variable...'"></span>
+                </span>
+            </span>
+        </button>
+    </div>
+</div>
+
+<div class="jajuma-syntax-highlighter-toolbar">
+    <a class="jajuma_develop_logo_link" href="https://www.jajuma.de/en/jajuma-develop/magento-extensions?mtm_campaign=sh4pb_menu" target="_blank" title="Go to www.jajuma.de"></a>
+    <div class="jajuma-intro-git4pagebuilder">
+        <div class="admin__field-tooltip">
+            <a class="admin__field-tooltip-action action-help info" target="_blank" tabindex="1" href="https://www.jajuma.de/en/jajuma-develop/magento-extensions?mtm_campaign=sh4pb_menu" title="Go to www.jajuma.de"></a>
+            <div class="admin__field-tooltip-content">
+                <span translate="'This syntax highlighter extension was built by JaJuMa.'"></span><br>
+                <a href="https://www.jajuma.de/en/jajuma-develop/magento-extensions?mtm_campaign=sh4pb_menu" target="_blank" translate="'Discover more JaJuMa Extensions + Services'"></a><br>
+                <span translate="'Syntax highlighting is powered by'"></span>
+                <a href="https://github.com/PrismJS" target="_blank" translate="'PrimsJS'"></a>
+            </div>
+        </div>
+        <div class="admin__field-tooltip">
+            <a class="admin__field-tooltip-action action-help git" target="_blank" tabindex="1" href="https://www.jajuma.de/en/jajuma-develop/magento-extensions?mtm_campaign=sh4pb_menu" title="Discover git 4 Page Builder"></a>
+            <div class="admin__field-tooltip-content">
+                <span translate="'Want to take your content management workflow with Page Builder to another level?'"></span><br>
+                <a href="https://www.jajuma.de/en/jajuma-develop/magento-extensions?mtm_campaign=sh4pb_menu" target="_blank" translate="'Check our git 4 Page Builder extension'"></a>
+            </div>
+        </div>
+    </div>
+    <button class="jajuma-syntax-highlighter-rainbow-braces">
+        <input type="checkbox" class="admin__actions-switch-checkbox" id="rainbowBraces" name="rainbowBraces" value="0" onchange="addPlugin(this, 'rainbow-braces')">
+        <label class="admin__actions-switch-label" for="rainbowBraces">
+            <span class="admin__actions-switch-text">Rainbow Braces</span>
+        </label>
+    </button>
+    <button class="jajuma-syntax-highlighter-invisibles">
+        <input type="checkbox" class="admin__actions-switch-checkbox" id="showInvisibles" name="showInvisibles" value="0" onchange="addPlugin(this, 'show-invisibles')">
+        <label class="admin__actions-switch-label" for="showInvisibles">
+            <span class="admin__actions-switch-text">Invisibles</span>
+        </label>
+    </button>
+    <button id="jajuma-change-theme"
+        onclick="window.openThemeListModal()"
+        class="jajuma-change-theme action" type="button">
+        <span translate="'Change Theme'"></span>
+        <span class="icon"></span>
+    </button>
+</div>
+
+<code-input class="jajuma-highlight-editor line-numbers code-input_registered code-input_pre-element-styled" style="resize: both;overflow: hidden;width: 100%;">
+    <textarea class="jajuma-syntax-highlighter-editing" data-bind="
+    value: value,
+    valueUpdate: valueUpdate,
+    hasFocus: focused,
+    attr: {
+        name: inputName,
+        cols: cols,
+        rows: rows,
+        'aria-describedby': noticeId,
+        placeholder: placeholder,
+        id: uid,
+        disabled: disabled,
+        context_show: updateSyntax($element)
+    }"
+    spellcheck="false"
+    oninput="updateSyntax(this); syncScroll(this);" onscroll="syncScroll(this);" onkeydown="checkTab(this, event); checkEnter(this, event)"
+    onmousemove="hoverBraces(this, event)" onclick="hoverBraces(this, event)"
+    >
+    </textarea>
+    <pre class="jajuma-syntax-highlighter-highlighting" aria-hidden="true">
+        <code class="jajuma-syntax-highlighter-highlighting-content line-numbers match-braces language-html"></code>
+    </pre>
+</code-input>

@@ -1,0 +1,34 @@
+.show-invisibles .token.tab:not(:empty),
+.show-invisibles .token.cr,
+.show-invisibles .token.lf,
+.show-invisibles .token.space {
+    position: relative;
+}
+
+.show-invisibles .token.tab:not(:empty):before,
+.show-invisibles .token.cr:before,
+.show-invisibles .token.lf:before,
+.show-invisibles .token.space:before {
+    color: #808080;
+    opacity: 0.6;
+    position: absolute;
+}
+
+.show-invisibles .token.tab:not(:empty):before {
+    content: '\21E5';
+}
+
+.show-invisibles .token.cr:before {
+    content: '\240D';
+}
+
+.show-invisibles .token.crlf:before {
+    content: '\240D\240A';
+}
+.show-invisibles .token.lf:before {
+    content: '\240A';
+}
+
+.show-invisibles .token.space:before {
+    content: '\00B7';
+}

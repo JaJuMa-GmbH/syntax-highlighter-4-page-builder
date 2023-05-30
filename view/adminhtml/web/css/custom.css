@@ -1,0 +1,418 @@
+/* Toolbar */
+
+.jajuma-syntax-highlighter-toolbar {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background: linear-gradient(90deg, #ffe9a3 0%, #fff5d5 100%);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 0 15px;
+    height: 100px;
+}
+
+.jajuma-syntax-highlighter-toolbar .jajuma_develop_logo_link {
+    display: inline-block;
+    content: '';
+    width: 80px;
+    height: 80px;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-image: url("../image/module-image.png");
+}
+
+.jajuma-intro-git4pagebuilder {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 110px;
+    height: 100%;
+    justify-content: center;
+}
+
+.jajuma-intro-git4pagebuilder .admin__field-tooltip {
+    width: 22px;
+    height: 22px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.jajuma-intro-git4pagebuilder .admin__field-tooltip .admin__field-tooltip-action:before {
+    display: none;
+}
+
+.jajuma-intro-git4pagebuilder .admin__field-tooltip .admin__field-tooltip-content:after,
+.jajuma-intro-git4pagebuilder .admin__field-tooltip .admin__field-tooltip-content:before {
+    left: 5px;
+}
+
+.jajuma-intro-git4pagebuilder .admin__field-tooltip .admin__field-tooltip-content:before {
+    border-top-color: #afadac75;
+}
+
+.jajuma-intro-git4pagebuilder .abs-admin__field-tooltip-content,
+.jajuma-intro-git4pagebuilder .admin__field-tooltip .admin__field-tooltip-content,
+.jajuma-intro-git4pagebuilder .gift-options-tooltip {
+    left: -10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.jajuma-syntax-highlighter-toolbar button {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    font-size: 13px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 8px;
+    color: #3C3C3C;
+    transition: .2s all ease;
+    font-weight: 400;
+    padding: 10px;
+    min-width: 90px;
+    background-color: rgba(0, 0, 0, 0)
+}
+
+.jajuma-syntax-highlighter-toolbar button:hover {
+    background: #efb600 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.jajuma-syntax-highlighter-toolbar button:focus {
+    background: #ffe9a3 !important;
+}
+
+.jajuma-syntax-highlighter-toolbar .jajuma-syntax-highlighter-rainbow-braces:hover,
+.jajuma-syntax-highlighter-toolbar .jajuma-syntax-highlighter-invisibles:hover {
+    background: #ffe9a3 !important;
+}
+
+.jajuma-syntax-highlighter-toolbar button svg  {
+    width: 32px;
+    display: inline-block;
+}
+
+.jajuma-syntax-highlighter-toolbar .action-help.info  {
+    background-image: url("../image/info_icon.svg") !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 100%;
+}
+
+.jajuma-syntax-highlighter-toolbar .action-help.git  {
+    background-image: url("../image/git_icon.svg") !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 100%;
+}
+
+.jajuma-syntax-highlighter-toolbar button span {
+    margin-top: 8px;
+}
+
+.jajuma-syntax-highlighter-toolbar .jajuma-change-theme {
+    background: #ffe9a3;
+}
+
+.jajuma-syntax-highlighter-toolbar .jajuma-change-theme.action .icon {
+    background-image: url("../image/change-theme-icon.svg") !important;
+    background-repeat: no-repeat !important;
+    width: 32px;
+    height: 32px;
+    margin-top: 0px;
+}
+
+.jajuma-syntax-highlighter-rainbow-braces,
+.jajuma-syntax-highlighter-invisibles {
+    padding: 0 !important;
+}
+
+.jajuma-syntax-highlighter-rainbow-braces label,
+.jajuma-syntax-highlighter-invisibles label {
+    padding: 10px 10px 4px;
+    height: 40px;
+}
+
+.jajuma-syntax-highlighter-toolbar .admin__actions-switch-checkbox:checked + .admin__actions-switch-label:before {
+    left: 26px;
+}
+
+.jajuma-syntax-highlighter-rainbow-braces input,
+.jajuma-syntax-highlighter-invisibles input {
+    display: none;
+    position: absolute;
+}
+
+.jajuma-syntax-highlighter-toolbar .admin__actions-switch-label:before,
+.jajuma-syntax-highlighter-toolbar .admin__actions-switch-label:after {
+    left: 10px;
+    top: 9px;
+}
+
+.jajuma-syntax-highlighter-rainbow-braces.active,
+.jajuma-syntax-highlighter-invisibles.active {
+    background: #efb600 !important;
+}
+
+.jajuma-syntax-highlighter-toolbar .admin__actions-switch-checkbox:checked + .admin__actions-switch-label:after {
+    background: #efb600 !important;
+}
+
+/* Popup */
+
+.my-custom-class .modal-inner-wrap {
+    width: 600px;
+}
+
+.jajuma-theme-item input {
+    position: absolute;
+    opacity: 0;
+}
+
+.jajuma-theme-item label {
+    background-color: #fff5d5;
+    border: 2px solid #fff5d5;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.jajuma-theme-item label:hover,
+.jajuma-theme-item label:focus {
+    background-color: #ffe9a3;
+    border: 2px solid #ffe9a3;
+}
+
+.jajuma-theme-item input:checked + label {
+    background-color: #efb600;
+    border: 2px solid #efb600;
+    font-weight: 700;
+}
+
+.jajuma-theme-item label img {
+    width: 100%;
+}
+
+.jajuma-theme-item .jajuma-theme-name {
+    padding: 2px 10px 5px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.jajuma-theme-list {
+    margin-left: calc(100% - 500px) !important;
+}
+
+/* Code Editor */
+
+.jajuma-highlight-editor {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 500px;
+}
+
+.jajuma-syntax-highlighter-editing,
+.jajuma-syntax-highlighter-highlighting {
+    margin: 10px;
+    padding: 10px;
+    border: 0;
+    width: calc(100% - 32px);
+    height: 150px;
+}
+
+.jajuma-syntax-highlighter-editing, .jajuma-syntax-highlighter-highlighting, .jajuma-syntax-highlighter-highlighting * {
+    font-size: 15pt;
+    font-family: monospace;
+    line-height: 1.5;
+    tab-size: 2;
+}
+
+.jajuma-highlight-editor .jajuma-syntax-highlighter-editing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    background: transparent;
+    caret-color: white;
+    z-index: 1;
+    resize: vertical;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding-left: 50px !important;
+    white-space: pre;
+}
+
+.jajuma-highlight-editor .jajuma-syntax-highlighter-highlighting {
+    position: absolute !important;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    margin: 0;
+    padding-right: 0;
+    padding-bottom: 10px;
+    padding-left: 50px !important;
+    white-space: initial !important;
+}
+
+.jajuma-syntax-highlighter-editing,
+.jajuma-syntax-highlighter-highlighting {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.jajuma-highlight-editor code[class*="language-"],
+.jajuma-highlight-editor pre[class*="language-"] {
+    white-space: pre;
+}
+
+.jajuma-syntax-highlighter-highlighting-content {
+    position: initial !important;
+}
+
+code-input {
+    /* Allow other elems to be inside */
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    /* Only scroll inside elems */
+    overflow: hidden;
+
+    /* Normal inline styles */
+    padding: 8px;
+    margin: 0!important;
+    width: calc(100% - 16px);
+    height: 250px;
+    font-size: normal;
+    font-family: monospace;
+    line-height: 1.5; /* Inherited to child elements */
+    tab-size: 2;
+    caret-color: darkgrey;
+    white-space: pre;
+  }
+
+  code-input textarea, code-input:not(.code-input_pre-element-styled) pre code, code-input.code-input_pre-element-styled pre {
+    /* Both elements need the same text and space styling so they are directly on top of each other */
+    margin: 0px!important;
+    padding: var(--padding, 16px)!important;
+    border: 0;
+    width: calc(100% - var(--padding, 16px) * 2);
+    height: calc(100% - var(--padding, 16px) * 2);
+  }
+  code-input:not(.code-input_pre-element-styled) pre, code-input.code-input_pre-element-styled pre code {
+    /* Remove all margin and padding from others */
+    margin: 0px!important;
+    padding: 0px!important;
+    width: 100%;
+    height: 100%;
+  }
+
+  code-input textarea, code-input pre, code-input pre * {
+    /* Also add text styles to highlighing tokens */
+    font-size: inherit!important;
+    font-family: inherit!important;
+    line-height: inherit!important;
+    tab-size: inherit!important;
+  }
+
+
+  code-input textarea, code-input pre {
+    /* In the same place */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+  /* Move the textarea in front of the result */
+
+  code-input textarea {
+    z-index: 1;
+  }
+  code-input pre {
+    z-index: 0;
+  }
+
+
+  /* Make textarea almost completely transparent */
+
+  code-input textarea {
+    color: transparent;
+    background: transparent;
+    caret-color: inherit!important; /* Or choose your favourite color */
+  }
+
+  /* Can be scrolled */
+  code-input textarea, code-input pre {
+    overflow: auto!important;
+
+    white-space: inherit;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+  }
+
+  /* No resize on textarea; stop outline */
+  code-input textarea {
+    resize: none;
+    outline: none!important;
+  }
+
+  code-input:not(.code-input_registered)::before {
+    /* Display message to register */
+    content: "Use codeInput.registerTemplate to set up.";
+    display: block;
+    color: grey;
+  }
+
+/* Line Number */
+
+pre[class*=language-].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 16px;
+    font-size: 100%;
+    left: 0;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.line-numbers-rows>span {
+    display: block;
+    counter-increment: linenumber
+}
+
+.line-numbers-rows>span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: .8em;
+    text-align: right
+}

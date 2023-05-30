@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2023-present JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<update id="Jajuma::top_level_extensions"
+             module="Jajuma_SyntaxHighlighter"
+             resource="Jajuma_General::jajuma_extensions"
+             sortOrder="65"
+             title="JaJuMa"/>
+
+		<add id="Jajuma_SyntaxHighlighter::jajuma_syntaxhighlighter"
+			 title="Syntax Highlighter"
+			 module="Jajuma_SyntaxHighlighter"
+			 sortOrder="2300"
+			 resource="Jajuma_SyntaxHighlighter::config_jajuma_syntaxhighlighter"
+			 parent="Jajuma::top_level_extensions"/>
+		<add id="Jajuma_SyntaxHighlighter::jajuma_syntaxhighlighter_config"
+			 title="Configuration"
+			 module="Jajuma_SyntaxHighlighter"
+			 sortOrder="1210"
+			 parent="Jajuma_SyntaxHighlighter::jajuma_syntaxhighlighter"
+			 action="admin/system_config/edit/section/syntaxhighlighter"
+			 resource="Jajuma_SyntaxHighlighter::config_jajuma_syntaxhighlighter"/>
+
+		<update id="Jajuma::extensions"
+             module="Jajuma_SyntaxHighlighter"
+             resource="Jajuma_General::jajuma_extensions"
+             sortOrder="10000"
+             parent="Jajuma::top_level_extensions"
+             title="JaJuMa Extensions"/>
+		<update id="Jajuma_Extensions::extensions_link"
+             title="More JaJuMa Extensions"
+			 module="Jajuma_SyntaxHighlighter"
+             sortOrder="10010"
+             action="syntaxhighlighter/extensions"
+             parent="Jajuma::extensions"
+             resource="Jajuma_General::jajuma_extensions"/>
+
+	</menu>
+</config>
