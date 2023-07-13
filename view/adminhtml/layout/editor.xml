@@ -25,7 +25,7 @@
         <css src="Jajuma_SyntaxHighlighter::css/prism-previewer.css"/>
     </head>
     <body>
-        <referenceContainer name="content">
+        <referenceContainer name="head.additional">
             <block class="Jajuma\SyntaxHighlighter\Block\Adminhtml\SyntaxHighlighter\SyntaxHighlighter" name="jajuma.syntax.highlighter.init"
                    template="Jajuma_SyntaxHighlighter::init.phtml"/>
         </referenceContainer>
