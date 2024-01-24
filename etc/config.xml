@@ -12,6 +12,11 @@
             <general>
                 <enabled>1</enabled>
                 <theme>prism-jajuma-dark</theme>
+                <line_numbers>0</line_numbers>
+                <inline_color>0</inline_color>
+                <previewers>0</previewers>
+                <match_braces>0</match_braces>
+                <invisibles>0</invisibles>
             </general>
         </syntaxhighlighter>
     </default>

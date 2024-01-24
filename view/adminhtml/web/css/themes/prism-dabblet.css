@@ -1,4 +1,4 @@
-.jajuma-highlight-editor code[class*="language-"], .jajuma-highlight-editor pre[class*="language-"] {
+code[class*="language-"], pre[class*="language-"] {
     color: black;
     background: none;
     text-shadow: 0 1px white;
@@ -18,66 +18,66 @@
     -ms-hyphens: none;
     hyphens: none;
 }
-.jajuma-highlight-editor pre[class*="language-"]::-moz-selection, .jajuma-highlight-editor pre[class*="language-"] ::-moz-selection, .jajuma-highlight-editor code[class*="language-"]::-moz-selection, .jajuma-highlight-editor code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection, code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
     text-shadow: none;
     background: #b3d4fc;
 }
-.jajuma-highlight-editor pre[class*="language-"]::selection, .jajuma-highlight-editor pre[class*="language-"] ::selection, .jajuma-highlight-editor code[class*="language-"]::selection, .jajuma-highlight-editor code[class*="language-"] ::selection {
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection, code[class*="language-"]::selection, code[class*="language-"] ::selection {
     text-shadow: none;
     background: #b3d4fc;
 }
 @media print {
-    .jajuma-highlight-editor code[class*="language-"], .jajuma-highlight-editor pre[class*="language-"] {
+    code[class*="language-"], pre[class*="language-"] {
         text-shadow: none;
     }
 }
-.jajuma-highlight-editor pre[class*="language-"] {
+pre[class*="language-"] {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
 }
-.jajuma-highlight-editor :not(pre) > code[class*="language-"], .jajuma-highlight-editor pre[class*="language-"] {
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
     background: #f5f2f0;
 }
-.jajuma-highlight-editor :not(pre) > code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
     padding: .1em;
     border-radius: .3em;
     white-space: normal;
 }
-.jajuma-highlight-editor .token.comment, .jajuma-highlight-editor .token.prolog, .jajuma-highlight-editor .token.doctype, .jajuma-highlight-editor .token.cdata {
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
     color: slategray;
 }
-.jajuma-highlight-editor .token.punctuation {
+.token.punctuation {
     color: #999;
 }
-.jajuma-highlight-editor .token.namespace {
+.token.namespace {
     opacity: .7;
 }
-.jajuma-highlight-editor .token.property, .jajuma-highlight-editor .token.tag, .jajuma-highlight-editor .token.boolean, .jajuma-highlight-editor .token.number, .jajuma-highlight-editor .token.constant, .jajuma-highlight-editor .token.symbol, .jajuma-highlight-editor .token.deleted {
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted {
     color: #905;
 }
-.jajuma-highlight-editor .token.selector, .jajuma-highlight-editor .token.attr-name, .jajuma-highlight-editor .token.string, .jajuma-highlight-editor .token.char, .jajuma-highlight-editor .token.builtin, .jajuma-highlight-editor .token.inserted {
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted {
     color: #690;
 }
-.jajuma-highlight-editor .token.operator, .jajuma-highlight-editor .token.entity, .jajuma-highlight-editor .token.url, .jajuma-highlight-editor .language-css .token.string, .jajuma-highlight-editor .style .token.string {
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
     color: #9a6e3a;
 }
-.jajuma-highlight-editor .token.atrule, .jajuma-highlight-editor .token.attr-value, .jajuma-highlight-editor .token.keyword {
+.token.atrule, .token.attr-value, .token.keyword {
     color: #07a;
 }
-.jajuma-highlight-editor .token.function, .jajuma-highlight-editor .token.class-name {
+.token.function, .token.class-name {
     color: #DD4A68;
 }
-.jajuma-highlight-editor .token.regex, .jajuma-highlight-editor .token.important, .jajuma-highlight-editor .token.variable {
+.token.regex, .token.important, .token.variable {
     color: #e90;
 }
-.jajuma-highlight-editor .token.important, .jajuma-highlight-editor .token.bold {
+.token.important, .token.bold {
     font-weight: bold;
 }
-.jajuma-highlight-editor .token.italic {
+.token.italic {
     font-style: italic;
 }
-.jajuma-highlight-editor .token.entity {
+.token.entity {
     cursor: help;
 }
 

@@ -1,15 +1,28 @@
-# Syntax Highlighter 4 Page Builder for Magento 2 by [JaJuMa](https://www.jajuma.de/)
+# :nerd_face: Syntax Highlighter 4 Page Builder for Magento 2 by [JaJuMa](https://www.jajuma.de/)
 
-<img align="right" width="300" height="300" src="https://www.jajuma.de/sites/default/files/ckfinder/userfiles/images/jajuma-develop/syntax-highlighter-4-page-builder-magento/Syntax-Highlighter-4-Page-Builder-Module-Magento-2-small.png">  
+<img align="right" width="35%" height="auto" src="https://www.jajuma.de/sites/default/files/ckfinder/userfiles/images/jajuma-develop/syntax-highlighter-4-page-builder-magento/Syntax-Highlighter-4-Page-Builder-Module-Magento-2-small.png">  
 
 Syntax Highlighter 4 Page Builder by [JaJuMa](https://www.jajuma.de/en) adds 
 syntax highlighting as well as line numbers and color icons for HTML, CSS + Javascript code in Magento 2 Page Builder.
 
 
-<img align="left" width="80" src="https://www.jajuma.de/sites/default/files/ckfinder/userfiles/images/jajuma-shop/magento-with-hyva/JaJuMa-Hyvanaut-small.png">  
+## Compatible with
 
-Compatible with  
-[Hyvä Theme](https://www.jajuma.de/en/jajuma-shop/online-shop-with-magento-2-and-hyva-themes)
+<td>
+    <table>
+     <tr>
+        <td><b>Hyvä Themes</b></td>
+        <td><b>Mage-OS</b></td>
+        <td><b>Magento</b></td>
+     </tr>
+     <tr>
+       <td><a href="https://www.jajuma.de/en/jajuma-shop/online-shop-with-magento-2-and-hyva-themes"><img align="left" width="80" src="https://www.jajuma.de/media/wysiwyg/jajuma-shop/magento-with-hyva/JaJuMa-Hyvanaut-small.png"></a></td>
+       <td><a href="https://www.jajuma.de/en/jajuma-shop/demo-shop-with-mage-os-and-hyva-themes"><img align="left" width="80" src="https://www.jajuma.de/media/wysiwyg/jajuma-develop/Mage-OS-Compatible.svg"></a></td>
+       <td><a href="https://www.jajuma.de/en/jajuma-shop"><img align="left" height="60" src="https://www.jajuma.de/media/wysiwyg/jajuma-develop/magento-icon.svg"></a></td>
+    </tr>
+    </table>
+</td>
+
 
 ## Features
 
@@ -147,6 +160,9 @@ that helped a lot when creating this module and
 
 * :question: :free: Content:<br>[Hyvä FAQ Widget for Hyvä Themes](https://www.jajuma.de/en/jajuma-develop/extensions/dynamic-shipping-tax-extension-for-magento-2)<br>
   FAQ Widget for your [Hyvä Themes](https://www.jajuma.de/de/jajuma-shop/online-shop-mit-magento-2-und-hyva-themes) Store
+
+* :question: :free: Admin Tools:<br>[Magento Power Toys](https://www.jajuma.de/en/jajuma-develop/extensions/power-toys-for-magento-2)<br>
+  Tools and helpers, a.k.a "Toys", for Magento Admins
 
 ## Other [Services](https://www.jajuma.de/en/jajuma/company-magento-ecommerce-agency-stuttgart) by [JaJuMa](https://www.jajuma.de/)
 

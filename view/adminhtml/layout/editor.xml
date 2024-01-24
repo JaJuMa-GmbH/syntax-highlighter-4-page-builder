@@ -9,12 +9,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <link src="Jajuma_SyntaxHighlighter::js/prism.js"/>
-        <link src="Jajuma_SyntaxHighlighter::js/plugins/line-numbers.js"/>
-        <link src="Jajuma_SyntaxHighlighter::js/plugins/match-braces.js"/>
-        <link src="Jajuma_SyntaxHighlighter::js/plugins/inline-color.js"/>
         <link src="Jajuma_SyntaxHighlighter::js/plugins/prism-css-extras.js"/>
-        <link src="Jajuma_SyntaxHighlighter::js/plugins/show-invisibles.js"/>
-        <link src="Jajuma_SyntaxHighlighter::js/plugins/previewers.js"/>
         <link src="Jajuma_SyntaxHighlighter::js/plugins/prism-html-extras.js"/>
 
         <css src="Jajuma_SyntaxHighlighter::css/custom.css"/>

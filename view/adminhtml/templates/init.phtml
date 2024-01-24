@@ -18,24 +18,97 @@ $themeList = $helperData->getThemes();
     window.syntaxHighlighter = {};
     window.syntaxHighlighter.enable = Boolean(parseInt('<?= $helperConfig->isEnable() ?>'));
     window.syntaxHighlighter.theme = '<?= $helperConfig->getTheme() ?>';
+    window.syntaxHighlighter.enablePreviewers = Boolean(parseInt('<?= $helperConfig->isPreviewersEnable(); ?>'));
+    window.syntaxHighlighter.enableMatchBraces = Boolean(parseInt('<?= $helperConfig->isMatchBracesEnable(); ?>'));
+    window.syntaxHighlighter.enableInvisibles = Boolean(parseInt('<?= $helperConfig->isInvisiblesEnable(); ?>'));
 </script>
 
 <?php if ($helperConfig->isEnable()): ?>
-    <pre style="display: none">
-        <code class="language-css">
-            <span></span>
-        </code>
-    </pre>
+    <?php if ($helperConfig->isLineNumbersEnable()): ?>
+        <script src="<?php echo $block->getViewFileUrl('Jajuma_SyntaxHighlighter::js/plugins/line-numbers.js'); ?>"></script>
+    <?php endif; ?>
+
+    <?php if ($helperConfig->isInlineColorEnable()): ?>
+        <script src="<?php echo $block->getViewFileUrl('Jajuma_SyntaxHighlighter::js/plugins/inline-color.js'); ?>"></script>
+    <?php endif; ?>
+
+    <?php if ($helperConfig->isPreviewersEnable()): ?>
+        <script src="<?php echo $block->getViewFileUrl('Jajuma_SyntaxHighlighter::js/plugins/previewers.js'); ?>"></script>
+    <?php endif; ?>
+
+    <?php if ($helperConfig->isMatchBracesEnable()): ?>
+        <script src="<?php echo $block->getViewFileUrl('Jajuma_SyntaxHighlighter::js/plugins/match-braces.js'); ?>"></script>
+    <?php endif; ?>
+
+    <?php if ($helperConfig->isInvisiblesEnable()): ?>
+        <script src="<?php echo $block->getViewFileUrl('Jajuma_SyntaxHighlighter::js/plugins/show-invisibles.js'); ?>"></script>
+    <?php endif; ?>
 
     <script>
+        function addJajumaHighlighter(element) {
+            let codeElm = document.createElement("code");
+            codeElm.classList.add('jajuma-syntax-highlighter-highlighting-content');
+            codeElm.classList.add('line-numbers');
+            codeElm.classList.add('match-braces');
+            codeElm.classList.add('language-html');
+
+            let preElm = document.createElement("pre");
+            preElm.classList.add('jajuma-syntax-highlighter-highlighting');
+            preElm.setAttribute('aria-hidden', 'true');
+            preElm.appendChild(codeElm);
+
+            let textArea = element;
+            let codeInputElm = textArea.parentElement;
+            let parentElm = codeInputElm.parentElement;
+
+            preElm.style.position = 'absolute';
+            preElm.style.top = codeInputElm.offsetTop+'px';
+            preElm.style.left = codeInputElm.offsetLeft+'px';
+            preElm.style.height = codeInputElm.offsetHeight+'px';
+            preElm.style.width = codeInputElm.offsetWidth+'px';
+
+            parentElm.appendChild(preElm);
+            updateSyntax(textArea);
+
+            textArea.addEventListener('scroll', function() {
+                syncScroll(textArea);
+            });
+
+            textArea.addEventListener('keydown', function() {
+                checkTab(textArea, event);
+                checkEnter(textArea, event);
+            });
+
+            textArea.addEventListener('input', function() {
+                updateSyntax(textArea);
+                syncScroll(textArea);
+            });
+
+            textArea.addEventListener('mousemove', function () {
+                hoverBraces(textArea, event);
+            });
+
+            textArea.addEventListener('click', function () {
+                hoverBraces(textArea, event);
+            });
+        }
+
         function updateSyntax(element) {
             let text = element.value;
-            let nextElement = element.nextElementSibling;
-            if (nextElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+            let codeInputElm = element.parentElement;
+            let parentElm = codeInputElm.parentElement;
+            let preElement = parentElm.querySelector('pre');
+            if (!preElement) {
                 return;
             }
 
-            let codes = nextElement.getElementsByTagName('code');
+            if (preElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+                return;
+            }
+
+            this.updateTheme();
+
+            let codes = preElement.getElementsByTagName('code');
             if (codes.length) {
                 let result_element = codes[0];
                 if (text[text.length - 1] === "\n") {
@@ -47,12 +120,33 @@ $themeList = $helperData->getThemes();
             }
         }
 
+        function updateTheme() {
+            let theme = window.syntaxHighlighter.theme;
+            let links = document.querySelectorAll('link');
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+                let href = link.href;
+                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
+                    let hrefArr = href.split('/');
+                    let currentTheme = hrefArr[hrefArr.length - 1];
+                    let newTheme = theme + '.css';
+                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
+                    return;
+                }
+            }
+        }
+
         function syncScroll(element) {
-            let nextElement = element.nextElementSibling;
-            if (nextElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+            let codeInputElm = element.parentElement;
+            let parentElm = codeInputElm.parentElement;
+            let preElement = parentElm.querySelector('pre');
+            if (!preElement) {
                 return;
             }
-            let result_element = nextElement;
+            if (preElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
+                return;
+            }
+            let result_element = preElement;
             result_element.scrollTop = element.scrollTop;
             result_element.scrollLeft = element.scrollLeft;
         }
@@ -135,7 +229,8 @@ $themeList = $helperData->getThemes();
                 return;
             }
 
-            let preElement = nextElement.querySelector('pre');
+            let parentElm = nextElement.parentElement;
+            let preElement = parentElm.querySelector('pre');
             if (!preElement) {
                 return;
             }
@@ -156,30 +251,38 @@ $themeList = $helperData->getThemes();
             x = event.clientX;
             y = event.clientY;
 
+            let codeInputElm = element.parentElement;
+            let parentElm = codeInputElm.parentElement;
+            let preElement = parentElm.querySelector('pre');
+
             if (event.type === 'click') {
-                element.nextElementSibling.style.zIndex = 2;
-                let elem = document.elementFromPoint(x,y);
-                if (elem !== curElem) {
-                    curElem = elem;
+                if (window.syntaxHighlighter.enableMatchBraces === true) {
+                    preElement.style.zIndex = 2;
+                    let elem = document.elementFromPoint(x, y);
+                    if (elem !== curElem) {
+                        curElem = elem;
+                    }
+                    triggerEventByXY('click', elem, x, y);
+                    preElement.style.zIndex = 0;
                 }
-                triggerEventByXY('click', elem, x, y);
-                element.nextElementSibling.style.zIndex = 0;
             }
 
             if (event.type === 'mousemove') {
-                element.nextElementSibling.style.zIndex = 2;
-                let elem = document.elementFromPoint(x,y);
-                if (elem !== curElem) {
-                    if (curElem) {
-                        triggerEventByXY('mouseleave', curElem, x, y);
-                        triggerEventByXY('mouseout', curElem, x, y);
+                if (window.syntaxHighlighter.enableMatchBraces === true || window.syntaxHighlighter.enablePreviewers) {
+                    preElement.style.zIndex = 2;
+                    let elem = document.elementFromPoint(x,y);
+                    if (elem !== curElem) {
+                        if (curElem) {
+                            triggerEventByXY('mouseleave', curElem, x, y);
+                            triggerEventByXY('mouseout', curElem, x, y);
+                        }
+                        curElem = elem;
                     }
-                    curElem = elem;
-                }
 
-                triggerEventByXY('mouseenter', elem, x, y);
-                triggerEventByXY('mouseover', elem, x, y);
-                element.nextElementSibling.style.zIndex = 0;
+                    triggerEventByXY('mouseenter', elem, x, y);
+                    triggerEventByXY('mouseover', elem, x, y);
+                    preElement.style.zIndex = 0;
+                }
             }
         }
 

@@ -183,7 +183,13 @@
                         inside: 'rest',
                         root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
                     }
-                ]
+                ],
+                'html': {
+                    lang: 'html',
+                    before: 'important',
+                    inside: 'inside',
+                    root: Prism.languages.html && Prism.languages.html['style'].inside['language-css']
+                }
             }
         },
         'angle': {
@@ -262,7 +268,13 @@
                         inside: 'rest',
                         root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
                     }
-                ]
+                ],
+                'html': {
+                    lang: 'html',
+                    before: 'important',
+                    inside: 'inside',
+                    root: Prism.languages.html && Prism.languages.html['style'].inside['language-css']
+                }
             }
         },
         'color': {
@@ -313,7 +325,13 @@
                         inside: 'rest',
                         root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
                     }
-                ]
+                ],
+                'html': {
+                    lang: 'html',
+                    before: 'important',
+                    inside: 'inside',
+                    root: Prism.languages.html && Prism.languages.html['style'].inside['language-css']
+                }
             }
         },
         'easing': {
@@ -397,7 +415,13 @@
                         inside: 'rest',
                         root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
                     }
-                ]
+                ],
+                'html': {
+                    lang: 'html',
+                    before: 'important',
+                    inside: 'inside',
+                    root: Prism.languages.html && Prism.languages.html['style'].inside['language-css']
+                }
             }
         },
 
@@ -457,7 +481,13 @@
                         inside: 'rest',
                         root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
                     }
-                ]
+                ],
+                'html': {
+                    lang: 'html',
+                    before: 'important',
+                    inside: 'inside',
+                    root: Prism.languages.html && Prism.languages.html['style'].inside['language-css']
+                }
             }
         }
     };

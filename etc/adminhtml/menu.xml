@@ -23,7 +23,7 @@
 		<add id="Jajuma_SyntaxHighlighter::jajuma_syntaxhighlighter_config"
 			 title="Configuration"
 			 module="Jajuma_SyntaxHighlighter"
-			 sortOrder="1210"
+			 sortOrder="2310"
 			 parent="Jajuma_SyntaxHighlighter::jajuma_syntaxhighlighter"
 			 action="admin/system_config/edit/section/syntaxhighlighter"
 			 resource="Jajuma_SyntaxHighlighter::config_jajuma_syntaxhighlighter"/>

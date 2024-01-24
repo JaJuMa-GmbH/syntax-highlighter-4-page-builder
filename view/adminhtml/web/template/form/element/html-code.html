@@ -50,13 +50,13 @@
             </div>
         </div>
     </div>
-    <button class="jajuma-syntax-highlighter-rainbow-braces">
+    <button class="jajuma-syntax-highlighter-rainbow-braces" data-bind="visible: window.syntaxHighlighter.enableMatchBraces">
         <input type="checkbox" class="admin__actions-switch-checkbox" id="rainbowBraces" name="rainbowBraces" value="0" onchange="addPlugin(this, 'rainbow-braces')">
         <label class="admin__actions-switch-label" for="rainbowBraces">
             <span class="admin__actions-switch-text">Rainbow Braces</span>
         </label>
     </button>
-    <button class="jajuma-syntax-highlighter-invisibles">
+    <button class="jajuma-syntax-highlighter-invisibles" data-bind="visible: window.syntaxHighlighter.enableInvisibles">
         <input type="checkbox" class="admin__actions-switch-checkbox" id="showInvisibles" name="showInvisibles" value="0" onchange="addPlugin(this, 'show-invisibles')">
         <label class="admin__actions-switch-label" for="showInvisibles">
             <span class="admin__actions-switch-text">Invisibles</span>
@@ -83,14 +83,7 @@
         placeholder: placeholder,
         id: uid,
         disabled: disabled,
-        context_show: updateSyntax($element)
+        context_show: addJajumaHighlighter($element)
     }"
-    spellcheck="false"
-    oninput="updateSyntax(this); syncScroll(this);" onscroll="syncScroll(this);" onkeydown="checkTab(this, event); checkEnter(this, event)"
-    onmousemove="hoverBraces(this, event)" onclick="hoverBraces(this, event)"
-    >
-    </textarea>
-    <pre class="jajuma-syntax-highlighter-highlighting" aria-hidden="true">
-        <code class="jajuma-syntax-highlighter-highlighting-content line-numbers match-braces language-html"></code>
-    </pre>
+    ></textarea>
 </code-input>
