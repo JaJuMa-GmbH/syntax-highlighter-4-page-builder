@@ -64,7 +64,7 @@ class SyntaxHighlighter extends \Magento\Backend\Block\Template
         LoggerInterface $logger,
         array $data = [],
         ?JsonHelper $jsonHelper = null,
-        ?DirectoryHelper $directoryHelper = null,
+        ?DirectoryHelper $directoryHelper = null
     ) {
         parent::__construct(
             $context,
