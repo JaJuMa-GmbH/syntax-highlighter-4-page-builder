@@ -65,10 +65,12 @@ $themeList = $helperData->getThemes();
             preElm.style.top = codeInputElm.offsetTop+'px';
             preElm.style.left = codeInputElm.offsetLeft+'px';
             preElm.style.height = codeInputElm.offsetHeight+'px';
-            preElm.style.width = codeInputElm.offsetWidth+'px';
+            preElm.style.width = (codeInputElm.offsetWidth+15)+'px';
+            preElm.style.resize = 'both';
 
             parentElm.appendChild(preElm);
             updateSyntax(textArea);
+            updateTheme();
 
             textArea.addEventListener('scroll', function() {
                 syncScroll(textArea);
@@ -84,12 +86,60 @@ $themeList = $helperData->getThemes();
                 syncScroll(textArea);
             });
 
-            textArea.addEventListener('mousemove', function () {
+            textArea.addEventListener('mousemove', function() {
                 hoverBraces(textArea, event);
             });
 
-            textArea.addEventListener('click', function () {
+            textArea.addEventListener('click', function() {
                 hoverBraces(textArea, event);
+            });
+
+            //resize function
+            let isResize = 0;
+            preElm.addEventListener('mousedown', function() {
+                if (event.which !== 1) {
+                    return;
+                }
+
+                let elementPosition = preElm.getBoundingClientRect();
+                let elementX = elementPosition.width + elementPosition.left;
+                let elementY = elementPosition.height + elementPosition.top;
+
+                let currentPointX = event.x;
+                let currentPointY = event.y;
+
+                if ((elementX-16 <= currentPointX)
+                    && (currentPointX <= elementX)
+                    && (elementY-16 <= currentPointY)
+                    && (currentPointY <= elementY)
+                ) {
+                    textArea.style.display = 'none';
+                    isResize = 1;
+                }
+            });
+
+            window.addEventListener('mousemove', function() {
+                if (!isResize) {
+                    return;
+                }
+
+                codeInputElm.style.width = (preElm.offsetWidth - 15)+'px';
+                codeInputElm.style.height = preElm.offsetHeight+'px';
+                textArea.style.width = preElm.offsetWidth+'px';
+                textArea.style.height = preElm.offsetHeight+'px';
+            });
+
+            preElm.addEventListener('mouseup', function() {
+                if (!isResize) {
+                    return;
+                }
+
+                isResize = 0;
+                textArea.style.display = 'block';
+                codeInputElm.style.width = (preElm.offsetWidth - 15)+'px';
+                codeInputElm.style.height = preElm.offsetHeight+'px';
+                textArea.style.width = preElm.offsetWidth+'px';
+                textArea.style.height = preElm.offsetHeight+'px';
             });
         }
 
@@ -106,8 +156,6 @@ $themeList = $helperData->getThemes();
                 return;
             }
 
-            this.updateTheme();
-
             let codes = preElement.getElementsByTagName('code');
             if (codes.length) {
                 let result_element = codes[0];
@@ -120,20 +168,10 @@ $themeList = $helperData->getThemes();
             }
         }
 
-        function updateTheme() {
-            let theme = window.syntaxHighlighter.theme;
-            let links = document.querySelectorAll('link');
-            for (let i = 0; i < links.length; i++) {
-                let link = links[i];
-                let href = link.href;
-                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
-                    let hrefArr = href.split('/');
-                    let currentTheme = hrefArr[hrefArr.length - 1];
-                    let newTheme = theme + '.css';
-                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
-                    return;
-                }
-            }
+        function updateSyntaxOnChange(element)
+        {
+            updateSyntax(element);
+            syncScroll(element);
         }
 
         function syncScroll(element) {
@@ -146,9 +184,12 @@ $themeList = $helperData->getThemes();
             if (preElement.classList.contains('jajuma-syntax-highlighter-highlighting') === false) {
                 return;
             }
-            let result_element = preElement;
-            result_element.scrollTop = element.scrollTop;
-            result_element.scrollLeft = element.scrollLeft;
+
+            if (preElement.scrollHeight <= preElement.clientHeight) {
+                element.style.width = (preElement.offsetWidth - 15)+'px';
+            }
+            preElement.scrollTop = element.scrollTop;
+            preElement.scrollLeft = element.scrollLeft;
         }
 
         function checkTab(element, event) {
@@ -206,45 +247,6 @@ $themeList = $helperData->getThemes();
             updateSyntax(input_element);
         }
 
-        function changeTheme(element) {
-            let theme = element.value;
-            let links = document.querySelectorAll('link');
-            for (let i = 0; i < links.length; i++) {
-                let link = links[i];
-                let href = link.href;
-                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
-                    let hrefArr = href.split('/');
-                    let currentTheme = hrefArr[hrefArr.length - 1];
-                    let newTheme = theme + '.css';
-                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
-                    return;
-                }
-            }
-        }
-
-        function addPlugin(element, plugin) {
-            let toolbarElement = element.parentElement.parentElement;
-            let nextElement = toolbarElement.nextElementSibling;
-            if (nextElement.classList.contains('jajuma-highlight-editor') === false) {
-                return;
-            }
-
-            let parentElm = nextElement.parentElement;
-            let preElement = parentElm.querySelector('pre');
-            if (!preElement) {
-                return;
-            }
-
-            if (element.checked === false) {
-                preElement.classList.remove(plugin);
-            } else {
-                if (preElement.classList.contains(plugin)) {
-                    return;
-                }
-                preElement.classList.add(plugin);
-            }
-        }
-
         var curElem = null;
         function hoverBraces(element, event) {
             let x, y;
@@ -295,6 +297,61 @@ $themeList = $helperData->getThemes();
                 'screenY': y
             });
             element.dispatchEvent(event);
+        }
+
+        function updateTheme() {
+            let theme = window.syntaxHighlighter.theme;
+            let links = document.querySelectorAll('link');
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+                let href = link.href;
+                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
+                    let hrefArr = href.split('/');
+                    let currentTheme = hrefArr[hrefArr.length - 1];
+                    let newTheme = theme + '.css';
+                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
+                    return;
+                }
+            }
+        }
+
+        function addPlugin(element, plugin) {
+            let toolbarElement = element.parentElement.parentElement;
+            let nextElement = toolbarElement.nextElementSibling;
+            if (nextElement.classList.contains('jajuma-highlight-editor') === false) {
+                return;
+            }
+
+            let parentElm = nextElement.parentElement;
+            let preElement = parentElm.querySelector('pre');
+            if (!preElement) {
+                return;
+            }
+
+            if (element.checked === false) {
+                preElement.classList.remove(plugin);
+            } else {
+                if (preElement.classList.contains(plugin)) {
+                    return;
+                }
+                preElement.classList.add(plugin);
+            }
+        }
+
+        function changeTheme(element) {
+            let theme = element.value;
+            let links = document.querySelectorAll('link');
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+                let href = link.href;
+                if (href.includes('Jajuma_SyntaxHighlighter/css/themes/')) {
+                    let hrefArr = href.split('/');
+                    let currentTheme = hrefArr[hrefArr.length - 1];
+                    let newTheme = theme + '.css';
+                    link.href = href.replace('/css/themes/' + currentTheme, '/css/themes/' + newTheme);
+                    return;
+                }
+            }
         }
 
         window.openThemeListModal = () => {

@@ -70,7 +70,7 @@
     </button>
 </div>
 
-<code-input class="jajuma-highlight-editor line-numbers code-input_registered code-input_pre-element-styled" style="resize: both;overflow: hidden;width: 100%;">
+<code-input class="jajuma-highlight-editor line-numbers code-input_registered code-input_pre-element-styled">
     <textarea class="jajuma-syntax-highlighter-editing" data-bind="
     value: value,
     valueUpdate: valueUpdate,
@@ -85,5 +85,5 @@
         disabled: disabled,
         context_show: addJajumaHighlighter($element)
     }"
-    ></textarea>
+    onchange="updateSyntaxOnChange(this)"></textarea>
 </code-input>

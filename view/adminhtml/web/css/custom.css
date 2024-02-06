@@ -219,26 +219,10 @@
 .jajuma-highlight-editor {
     position: relative;
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: calc(100% - 15px);
     min-height: 500px;
+    resize: none;
 }
-
-.jajuma-syntax-highlighter-editing,
-.jajuma-syntax-highlighter-highlighting {
-    margin: 10px;
-    padding: 10px;
-    border: 0;
-    width: calc(100% - 32px);
-    height: 150px;
-}
-
-/*.jajuma-syntax-highlighter-editing, .jajuma-syntax-highlighter-highlighting, .jajuma-syntax-highlighter-highlighting * {
-    font-size: 15pt;
-    font-family: monospace;
-    line-height: 1.5;
-    tab-size: 2;
-}*/
 
 .jajuma-highlight-editor .jajuma-syntax-highlighter-editing {
     position: absolute;
@@ -248,8 +232,8 @@
     background: transparent;
     caret-color: white;
     z-index: 1;
-    resize: vertical;
-    width: 100%;
+    resize: none;
+    width: calc(100% + 15px);
     height: 100%;
     margin: 0;
     padding-left: 50px !important;
@@ -297,7 +281,7 @@ code-input {
     /* Normal inline styles */
     padding: 8px;
     margin: 0!important;
-    width: calc(100% - 16px);
+    width: calc(100% - 15px);
     height: 250px;
     font-size: normal;
     font-family: monospace;
